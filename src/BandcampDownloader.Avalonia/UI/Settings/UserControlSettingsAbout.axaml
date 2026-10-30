@@ -1,0 +1,95 @@
+<UserControl
+    x:Class="BandcampDownloader.Avalonia.UI.Settings.UserControlSettingsAbout"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:core="clr-namespace:BandcampDownloader.Core;assembly=BandcampDownloader.Core"
+    xmlns:loc="clr-namespace:BandcampDownloader.Avalonia.Core.Localization"
+    Width="410"
+    Height="200">
+    <Grid x:Name="GridMain" ColumnDefinitions="Auto,*" RowDefinitions="Auto,26,26,26,26">
+        <StackPanel
+            Grid.Row="0"
+            Grid.ColumnSpan="2"
+            HorizontalAlignment="Center"
+            Orientation="Horizontal"
+            Spacing="4">
+            <Image
+                x:Name="ImageCloud"
+                Width="32"
+                Height="32"
+                RenderOptions.BitmapInterpolationMode="None"
+                Source="avares://BandcampDownloader.Avalonia/Assets/CloudSmall.png"
+                Stretch="Fill" />
+            <TextBlock
+                x:Name="LabelAppName"
+                VerticalAlignment="Center"
+                FontSize="20"
+                Text="Bandcamp Downloader" />
+        </StackPanel>
+
+        <TextBlock
+            x:Name="LabelVersion"
+            Grid.Row="1"
+            Grid.Column="0"
+            VerticalAlignment="Center"
+            Text="{loc:Loc labelVersion}" />
+        <TextBlock
+            x:Name="LabelVersionValue"
+            Grid.Row="1"
+            Grid.Column="1"
+            Margin="8,0,0,0"
+            VerticalAlignment="Center"
+            Text="{x:Static core:Constants.APP_VERSION_FORMATTED}" />
+
+        <TextBlock
+            x:Name="LabelChangelog"
+            Grid.Row="2"
+            Grid.Column="0"
+            VerticalAlignment="Center"
+            Text="{loc:Loc labelChangelog}" />
+        <Button
+            x:Name="ButtonViewChangelog"
+            Grid.Row="2"
+            Grid.Column="1"
+            Margin="8,0,0,0"
+            Height="20"
+            Padding="10,0"
+            HorizontalAlignment="Left"
+            Click="ButtonViewChangelog_Click"
+            Content="{loc:Loc buttonViewChangelog}"
+            HorizontalContentAlignment="Center"
+            TabIndex="0" />
+
+        <TextBlock
+            x:Name="LabelWebsite"
+            Grid.Row="3"
+            Grid.Column="0"
+            VerticalAlignment="Center"
+            Text="{loc:Loc labelWebsite}" />
+        <TextBlock
+            x:Name="TextBlockWebsite"
+            Grid.Row="3"
+            Grid.Column="1"
+            Margin="8,0,0,0"
+            VerticalAlignment="Center"
+            PointerPressed="TextBlockWebsite_PointerPressed"
+            Text="github.com/Otiel/BandcampDownloader"
+            ToolTip.Tip="{x:Static core:Constants.URL_WEBSITE}" />
+
+        <TextBlock
+            x:Name="LabelIssues"
+            Grid.Row="4"
+            Grid.Column="0"
+            VerticalAlignment="Center"
+            Text="{loc:Loc labelIssues}" />
+        <TextBlock
+            x:Name="TextBlockIssuesWebsite"
+            Grid.Row="4"
+            Grid.Column="1"
+            Margin="8,0,0,0"
+            VerticalAlignment="Center"
+            PointerPressed="TextBlockIssuesWebsite_PointerPressed"
+            Text="github.com/Otiel/BandcampDownloader/issues"
+            ToolTip.Tip="{x:Static core:Constants.URL_ISSUES}" />
+    </Grid>
+</UserControl>

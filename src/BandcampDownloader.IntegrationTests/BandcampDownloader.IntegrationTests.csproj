@@ -20,4 +20,9 @@
     <Using Include="NUnit.Framework" />
   </ItemGroup>
 
+  <ItemGroup>
+    <!-- The live tests exercise the real Core pipeline (parser, download manager, tagging, playlists). -->
+    <ProjectReference Include="..\BandcampDownloader.Core\BandcampDownloader.Core.csproj" />
+  </ItemGroup>
+
 </Project>

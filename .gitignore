@@ -16,3 +16,25 @@ _ReSharper*
 
 # Temporary csproj during build
 *wpftmp.csproj
+
+# Local .NET SDK / NuGet state (see scripts/dev-env.sh)
+.dotnet/
+.dotnet-home/
+.nuget/
+.env.dev.sh
+
+# Build lock used by scripts/build.sh to serialize shared-workspace builds
+.msbuild-lock.d/
+
+# Local macOS packaging output
+dist/
+
+# Local run data (test / portable runs use BANDCAMPDOWNLOADER_DATA_DIR)
+.appdata-*/
+spikes/**/bin/
+spikes/**/obj/
+
+# Local feasibility-spike workspace (findings kept in docs/macos-avalonia-spike.md)
+spikes/
+.verify-tmp/
+.verify-settings/

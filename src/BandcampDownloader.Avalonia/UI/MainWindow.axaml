@@ -1,0 +1,178 @@
+<Window
+    x:Class="BandcampDownloader.Avalonia.MainWindow"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:loc="clr-namespace:BandcampDownloader.Avalonia.Core.Localization"
+    Title="Bandcamp Downloader"
+    Width="815"
+    Height="440"
+    MinWidth="815"
+    MinHeight="440"
+    WindowStartupLocation="CenterScreen"
+    Closing="WindowMain_Closing"
+    Opened="WindowMain_Opened">
+    <Grid x:Name="GridMain" Margin="10" RowDefinitions="Auto,Auto,Auto,Auto,*,Auto">
+        <!--  URLs to download (one per line)  -->
+        <Grid x:Name="GridUrls" Grid.Row="0">
+            <TextBox
+                x:Name="TextBoxUrls"
+                Height="111"
+                AcceptsReturn="True"
+                ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                ScrollViewer.VerticalScrollBarVisibility="Auto"
+                TabIndex="0"
+                TextWrapping="NoWrap"
+                TextChanged="TextBoxUrls_TextChanged" />
+            <!--  Placeholder rendered as an overlay (instead of TextBox.Watermark) so that long
+                  translations wrap instead of being clipped.  -->
+            <TextBlock
+                x:Name="TextBoxUrlsPlaceholder"
+                Margin="4,2,4,2"
+                VerticalAlignment="Top"
+                Foreground="Gray"
+                IsHitTestVisible="False"
+                Text="{loc:Loc textBoxUrlsPlaceholder}"
+                TextWrapping="Wrap" />
+        </Grid>
+
+        <!--  Downloads path  -->
+        <Grid
+            x:Name="GridDownloadsPath"
+            Grid.Row="1"
+            Margin="0,4,0,0"
+            ColumnDefinitions="Auto,*,Auto">
+            <TextBlock
+                x:Name="LabelDownloadsPath"
+                Grid.Column="0"
+                Margin="0,0,6,0"
+                VerticalAlignment="Center"
+                Text="{loc:Loc labelDownloadsPath}" />
+            <TextBox
+                x:Name="TextBoxDownloadsPath"
+                Grid.Column="1"
+                VerticalAlignment="Center"
+                Text="{Binding DownloadsPath, Mode=TwoWay, UpdateSourceTrigger=LostFocus}"
+                ToolTip.Tip="{loc:Loc textBoxDownloadsPath_ToolTip}" />
+            <Button
+                x:Name="ButtonBrowse"
+                Grid.Column="2"
+                Width="27"
+                Margin="5,0,0,0"
+                Click="ButtonBrowse_Click"
+                Content="{loc:Loc buttonBrowse}"
+                TabIndex="2"
+                ToolTip.Tip="{loc:Loc buttonBrowse_ToolTip}" />
+        </Grid>
+
+        <!--  Discography checkbox  -->
+        <CheckBox
+            x:Name="CheckBoxDownloadDiscography"
+            Grid.Row="2"
+            Margin="0,4,0,0"
+            HorizontalAlignment="Left"
+            Content="{loc:Loc checkBoxDownloadDiscography}"
+            IsChecked="{Binding DownloadArtistDiscography, Mode=OneWay}"
+            IsCheckedChanged="CheckBoxDownloadDiscography_Changed"
+            TabIndex="3"
+            ToolTip.Tip="{loc:Loc checkBoxDownloadDiscography_ToolTip}" />
+
+        <!--  Progress bar  -->
+        <ProgressBar
+            x:Name="ProgressBar"
+            Grid.Row="3"
+            Height="18"
+            Margin="0,4,0,0"
+            IsTabStop="False" />
+
+        <!--  Log: one entry per line, colored depending on the DownloadProgressChangedLevel  -->
+        <Border
+            Grid.Row="4"
+            Margin="0,4,0,4"
+            BorderBrush="Gray"
+            BorderThickness="1">
+            <ScrollViewer
+                x:Name="ScrollViewerLog"
+                HorizontalScrollBarVisibility="Disabled"
+                VerticalScrollBarVisibility="Auto">
+                <ItemsControl x:Name="ItemsControlLog">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Grid ColumnDefinitions="Auto,*">
+                                <TextBlock
+                                    Margin="2,0,2,0"
+                                    VerticalAlignment="Top"
+                                    Foreground="Gray"
+                                    Text="{Binding Timestamp}" />
+                                <TextBlock
+                                    Grid.Column="1"
+                                    VerticalAlignment="Top"
+                                    Foreground="{Binding Foreground}"
+                                    Text="{Binding Message}"
+                                    TextWrapping="Wrap" />
+                            </Grid>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </ScrollViewer>
+        </Border>
+
+        <!--  Action bar  -->
+        <Grid x:Name="GridActionBar" Grid.Row="5" ColumnDefinitions="*,Auto,Auto,Auto,Auto,Auto">
+            <TextBlock
+                x:Name="LabelNewVersion"
+                Grid.Column="0"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Center"
+                Cursor="Hand"
+                IsVisible="False"
+                PointerPressed="LabelNewVersion_PointerPressed" />
+            <TextBlock
+                x:Name="LabelDownloadSpeed"
+                Grid.Column="1"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Center"
+                TextAlignment="Right" />
+            <TextBlock
+                x:Name="LabelProgress"
+                Grid.Column="2"
+                Margin="10,0,0,0"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Center"
+                TextAlignment="Right" />
+            <Button
+                x:Name="ButtonStart"
+                Grid.Column="3"
+                Height="24"
+                MinWidth="100"
+                Padding="10,0"
+                Click="ButtonStart_Click"
+                Content="{loc:Loc buttonStart}"
+                HorizontalContentAlignment="Center"
+                TabIndex="4" />
+            <Button
+                x:Name="ButtonStop"
+                Grid.Column="4"
+                Height="24"
+                MinWidth="100"
+                Margin="5,0,0,0"
+                Padding="10,0"
+                Click="ButtonStop_Click"
+                Content="{loc:Loc buttonStop}"
+                HorizontalContentAlignment="Center"
+                IsEnabled="False"
+                TabIndex="5" />
+            <Button
+                x:Name="ButtonOpenSettingsWindow"
+                Grid.Column="5"
+                Height="24"
+                MinWidth="100"
+                Margin="5,0,0,0"
+                Padding="10,0"
+                Click="ButtonOpenSettingsWindow_Click"
+                Content="{loc:Loc buttonOpenSettingsWindow}"
+                HorizontalContentAlignment="Center"
+                TabIndex="6"
+                ToolTip.Tip="{loc:Loc buttonOpenSettingsWindow_ToolTip}" />
+        </Grid>
+    </Grid>
+</Window>

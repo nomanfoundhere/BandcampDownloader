@@ -10,6 +10,18 @@
 
 BandcampDownloader is a Windows application that helps downloading albums from [bandcamp.com](https://bandcamp.com) by retrieving the 128 kbps MP3 files streamed on the website. It aims to ease the life of those who prefer to listen to music on their favorite player rather than on their web browser, but offers only what is already freely available on Bandcamp.
 
+## macOS
+
+A native macOS port built with [Avalonia](https://avaloniaui.net/) lives in
+[`src/BandcampDownloader.Avalonia`](src/BandcampDownloader.Avalonia). It has the same feature set as
+the Windows application (downloads, tagging, cover art, playlists, settings, translations) and can
+be packaged as a self-contained `Bandcamp Downloader.app` with
+[`scripts/package-macos.sh`](scripts/package-macos.sh).
+
+See **[docs/macos.md](docs/macos.md)** for requirements, build/packaging commands, file locations,
+known limitations (ad-hoc signature, update check, ImageSharp advisory) and troubleshooting.
+The Windows WPF application is unchanged.
+
 ## Features
 
 * Download MP3 files from Bandcamp:

@@ -5,9 +5,28 @@
     <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
     <LangVersion>latest</LangVersion>
     <Configurations>Debug;Release</Configurations>
-    <Platforms>x64</Platforms>
+    <!-- AnyCPU is required to build the cross-platform (Avalonia) head on macOS. -->
+    <Platforms>x64;AnyCPU;arm64</Platforms>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     <MSBuildTreatWarningsAsErrors>true</MSBuildTreatWarningsAsErrors>
+    <!-- Version of the application, shared by every head so that update checks compare the same version. -->
+    <VersionPrefix>1.5.2</VersionPrefix>
   </PropertyGroup>
+
+  <ItemGroup>
+    <!--
+      Upstream deliberately pins SixLabors.ImageSharp 3.1.12: it is the last release under the
+      Apache-2.0 license, while 3.2.0+ requires a paid commercial license. The advisories below are
+      known, accepted risks of that pin (images are only decoded from Bandcamp's own servers).
+      NuGet audit would otherwise fail the build because warnings are errors.
+      Remove these suppressions if the image stack is ever replaced (e.g. by SkiaSharp).
+    -->
+    <NuGetAuditSuppress Include="https://github.com/advisories/GHSA-gwg2-r3hj-4w44" />
+    <NuGetAuditSuppress Include="https://github.com/advisories/GHSA-j3p4-wp97-rph4" />
+    <NuGetAuditSuppress Include="https://github.com/advisories/GHSA-j9gm-c75j-xc9q" />
+    <NuGetAuditSuppress Include="https://github.com/advisories/GHSA-jjfr-hcj7-qf5w" />
+    <NuGetAuditSuppress Include="https://github.com/advisories/GHSA-v76p-62qx-wwq2" />
+    <NuGetAuditSuppress Include="https://github.com/advisories/GHSA-wmxv-xphr-5c9g" />
+  </ItemGroup>
 
 </Project>

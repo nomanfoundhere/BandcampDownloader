@@ -1,0 +1,102 @@
+<UserControl
+    x:Class="BandcampDownloader.Avalonia.UI.Settings.UserControlSettingsAdvanced"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:converters="clr-namespace:BandcampDownloader.Avalonia.UI.Shared.Converters"
+    xmlns:loc="clr-namespace:BandcampDownloader.Avalonia.Core.Localization"
+    Width="430">
+    <UserControl.Resources>
+        <converters:DoubleToPercentConverter x:Key="DoubleToPercentConverter" />
+    </UserControl.Resources>
+    <Grid
+        x:Name="GridMain"
+        VerticalAlignment="Top"
+        ColumnDefinitions="Auto,*"
+        RowDefinitions="32,32,32,32,32">
+        <StackPanel
+            x:Name="DockPanelInfo"
+            Grid.Row="0"
+            Grid.Column="0"
+            Grid.ColumnSpan="2"
+            VerticalAlignment="Center"
+            Orientation="Horizontal"
+            Spacing="5"
+            IsVisible="False">
+            <Image
+                x:Name="ImageInfo"
+                Width="16"
+                Height="16"
+                Margin="5,0,0,0"
+                Source="avares://BandcampDownloader.Avalonia/Assets/ExclamationSmall.png" />
+            <Label
+                x:Name="LabelAdvancedSettingsWarning"
+                VerticalAlignment="Center"
+                Content="{loc:Loc labelAdvancedSettingsWarning}"
+                Foreground="#858585" />
+        </StackPanel>
+        <Label
+            x:Name="LabelAllowedFileSizeDifference"
+            Grid.Row="1"
+            Grid.Column="0"
+            VerticalAlignment="Center"
+            Content="{loc:Loc labelAllowedFileSizeDifference}" />
+        <TextBox
+            x:Name="TextBoxAllowedFileSizeDifference"
+            Grid.Row="1"
+            Grid.Column="1"
+            Width="55"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Center"
+            VerticalContentAlignment="Center"
+            Text="{Binding AllowedFileSizeDifference, Mode=OneWay, Converter={StaticResource DoubleToPercentConverter}}"
+            ToolTip.Tip="{loc:Loc textBoxAllowedFileSizeDifference_ToolTip}" />
+        <Label
+            x:Name="LabelDownloadMaxTries"
+            Grid.Row="2"
+            Grid.Column="0"
+            VerticalAlignment="Center"
+            Content="{loc:Loc labelDownloadMaxTries}" />
+        <TextBox
+            x:Name="TextBoxDownloadMaxTries"
+            Grid.Row="2"
+            Grid.Column="1"
+            Width="55"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Center"
+            VerticalContentAlignment="Center"
+            Text="{Binding DownloadMaxTries, Mode=OneWay}"
+            ToolTip.Tip="{loc:Loc textBoxDownloadMaxTries_ToolTip}" />
+        <Label
+            x:Name="LabelDownloadRetryCooldown"
+            Grid.Row="3"
+            Grid.Column="0"
+            VerticalAlignment="Center"
+            Content="{loc:Loc labelDownloadRetryCooldown}" />
+        <TextBox
+            x:Name="TextBoxDownloadRetryCooldown"
+            Grid.Row="3"
+            Grid.Column="1"
+            Width="55"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Center"
+            VerticalContentAlignment="Center"
+            Text="{Binding DownloadRetryCooldown, Mode=OneWay}"
+            ToolTip.Tip="{loc:Loc textBoxDownloadRetryCooldown_ToolTip}" />
+        <Label
+            x:Name="LabelDownloadRetryExponent"
+            Grid.Row="4"
+            Grid.Column="0"
+            VerticalAlignment="Center"
+            Content="{loc:Loc labelDownloadRetryExponent}" />
+        <TextBox
+            x:Name="TextBoxDownloadRetryExponent"
+            Grid.Row="4"
+            Grid.Column="1"
+            Width="55"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Center"
+            VerticalContentAlignment="Center"
+            Text="{Binding DownloadRetryExponent, Mode=OneWay}"
+            ToolTip.Tip="{loc:Loc textBoxDownloadRetryExponent_ToolTip}" />
+    </Grid>
+</UserControl>

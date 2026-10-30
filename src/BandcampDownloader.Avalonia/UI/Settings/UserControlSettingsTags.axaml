@@ -1,0 +1,165 @@
+<UserControl
+    x:Class="BandcampDownloader.Avalonia.UI.Settings.UserControlSettingsTags"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:loc="clr-namespace:BandcampDownloader.Avalonia.Core.Localization"
+    Width="430">
+    <Grid
+        x:Name="GridMain"
+        VerticalAlignment="Top"
+        RowDefinitions="32,32,*">
+        <Grid
+            x:Name="GridFileNameFormat"
+            Grid.Row="0"
+            ColumnDefinitions="Auto,*">
+            <Label
+                x:Name="LabelFileNameFormat"
+                Grid.Column="0"
+                VerticalAlignment="Center"
+                Content="{loc:Loc labelFileNameFormat}" />
+            <TextBox
+                x:Name="TextBoxFileNameFormat"
+                Grid.Column="1"
+                Margin="0,0,5,0"
+                VerticalAlignment="Center"
+                VerticalContentAlignment="Center"
+                Text="{Binding FileNameFormat, Mode=OneWay}"
+                ToolTip.Tip="{loc:Loc textBoxFileNameFormat_ToolTip}" />
+        </Grid>
+        <CheckBox
+            x:Name="CheckBoxModifyTags"
+            Grid.Row="1"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Center"
+            Content="{loc:Loc checkBoxModifyTags}"
+            IsChecked="{Binding ModifyTags, Mode=OneWay}"
+            ToolTip.Tip="{loc:Loc checkBoxModifyTags_ToolTip}" />
+        <Grid
+            x:Name="GridTags"
+            Grid.Row="2"
+            Margin="18,0,0,0"
+            ColumnDefinitions="Auto,*"
+            RowDefinitions="32,32,32,32,32,32,32,32">
+            <Label
+                x:Name="LabelArtist"
+                Grid.Row="0"
+                Grid.Column="0"
+                VerticalAlignment="Center"
+                Content="{loc:Loc labelArtist}" />
+            <ComboBox
+                x:Name="ComboBoxArtist"
+                Grid.Row="0"
+                Grid.Column="1"
+                Width="175"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Center"
+                ItemTemplate="{StaticResource EnumOptionTemplate}"
+                IsEnabled="{Binding IsChecked, ElementName=CheckBoxModifyTags}" />
+            <Label
+                x:Name="LabelTrackNumber"
+                Grid.Row="1"
+                Grid.Column="0"
+                VerticalAlignment="Center"
+                Content="{loc:Loc labelTrackNumber}" />
+            <ComboBox
+                x:Name="ComboBoxTrackNumber"
+                Grid.Row="1"
+                Grid.Column="1"
+                Width="175"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Center"
+                ItemTemplate="{StaticResource EnumOptionTemplate}"
+                IsEnabled="{Binding IsChecked, ElementName=CheckBoxModifyTags}" />
+            <Label
+                x:Name="LabelTrackTitle"
+                Grid.Row="2"
+                Grid.Column="0"
+                VerticalAlignment="Center"
+                Content="{loc:Loc labelTrackTitle}" />
+            <ComboBox
+                x:Name="ComboBoxTrackTitle"
+                Grid.Row="2"
+                Grid.Column="1"
+                Width="175"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Center"
+                ItemTemplate="{StaticResource EnumOptionTemplate}"
+                IsEnabled="{Binding IsChecked, ElementName=CheckBoxModifyTags}" />
+            <Label
+                x:Name="LabelAlbumTitle"
+                Grid.Row="3"
+                Grid.Column="0"
+                VerticalAlignment="Center"
+                Content="{loc:Loc labelAlbumTitle}" />
+            <ComboBox
+                x:Name="ComboBoxAlbumTitle"
+                Grid.Row="3"
+                Grid.Column="1"
+                Width="175"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Center"
+                ItemTemplate="{StaticResource EnumOptionTemplate}"
+                IsEnabled="{Binding IsChecked, ElementName=CheckBoxModifyTags}" />
+            <Label
+                x:Name="LabelAlbumArtist"
+                Grid.Row="4"
+                Grid.Column="0"
+                VerticalAlignment="Center"
+                Content="{loc:Loc labelAlbumArtist}" />
+            <ComboBox
+                x:Name="ComboBoxAlbumArtist"
+                Grid.Row="4"
+                Grid.Column="1"
+                Width="175"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Center"
+                ItemTemplate="{StaticResource EnumOptionTemplate}"
+                IsEnabled="{Binding IsChecked, ElementName=CheckBoxModifyTags}" />
+            <Label
+                x:Name="LabelYear"
+                Grid.Row="5"
+                Grid.Column="0"
+                VerticalAlignment="Center"
+                Content="{loc:Loc labelYear}" />
+            <ComboBox
+                x:Name="ComboBoxYear"
+                Grid.Row="5"
+                Grid.Column="1"
+                Width="175"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Center"
+                ItemTemplate="{StaticResource EnumOptionTemplate}"
+                IsEnabled="{Binding IsChecked, ElementName=CheckBoxModifyTags}" />
+            <Label
+                x:Name="LabelLyrics"
+                Grid.Row="6"
+                Grid.Column="0"
+                VerticalAlignment="Center"
+                Content="{loc:Loc labelLyrics}" />
+            <ComboBox
+                x:Name="ComboBoxLyrics"
+                Grid.Row="6"
+                Grid.Column="1"
+                Width="175"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Center"
+                ItemTemplate="{StaticResource EnumOptionTemplate}"
+                IsEnabled="{Binding IsChecked, ElementName=CheckBoxModifyTags}" />
+            <Label
+                x:Name="LabelComments"
+                Grid.Row="7"
+                Grid.Column="0"
+                VerticalAlignment="Center"
+                Content="{loc:Loc labelComments}" />
+            <ComboBox
+                x:Name="ComboBoxComments"
+                Grid.Row="7"
+                Grid.Column="1"
+                Width="175"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Center"
+                ItemTemplate="{StaticResource EnumOptionTemplate}"
+                IsEnabled="{Binding IsChecked, ElementName=CheckBoxModifyTags}" />
+        </Grid>
+    </Grid>
+</UserControl>

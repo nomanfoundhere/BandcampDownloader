@@ -1,0 +1,9 @@
+<UserControl
+    x:Class="BandcampDownloader.Avalonia.UI.Update.UserControlChangelog"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <!--  STUB: implemented by the mac-ui-main task.  -->
+    <ScrollViewer>
+        <SelectableTextBlock x:Name="TextBlockChangelog" Margin="4" FontFamily="Menlo,Consolas,monospace" TextWrapping="Wrap" />
+    </ScrollViewer>
+</UserControl>

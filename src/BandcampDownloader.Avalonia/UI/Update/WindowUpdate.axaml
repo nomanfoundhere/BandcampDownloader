@@ -1,0 +1,70 @@
+<Window
+    x:Class="BandcampDownloader.Avalonia.UI.Update.WindowUpdate"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:core="clr-namespace:BandcampDownloader.Core;assembly=BandcampDownloader.Core"
+    xmlns:loc="clr-namespace:BandcampDownloader.Avalonia.Core.Localization"
+    xmlns:update="clr-namespace:BandcampDownloader.Avalonia.UI.Update"
+    Title="{loc:Loc windowUpdate_Title}"
+    Width="800"
+    Height="500"
+    MinWidth="800"
+    MinHeight="500"
+    WindowStartupLocation="CenterOwner"
+    KeyDown="WindowUpdate_KeyDown"
+    Opened="WindowUpdate_Opened">
+    <Grid x:Name="GridMain" Margin="10,0,10,10" RowDefinitions="Auto,*,Auto">
+        <Label
+            x:Name="LabelChangelogTitle"
+            Grid.Row="0"
+            HorizontalAlignment="Center"
+            Content="{loc:Loc labelChangelogTitle}"
+            FontSize="20" />
+
+        <Border
+            Grid.Row="1"
+            Margin="0,0,0,10"
+            BorderBrush="Gray"
+            BorderThickness="0,0.5,0,0.5">
+            <update:UserControlChangelog x:Name="UserControlChangelog" />
+        </Border>
+
+        <Grid
+            x:Name="GridActionBar"
+            Grid.Row="2"
+            ColumnDefinitions="*,Auto,Auto">
+            <StackPanel
+                Grid.Column="0"
+                Orientation="Horizontal"
+                VerticalAlignment="Center">
+                <TextBlock
+                    VerticalAlignment="Center"
+                    Text="{loc:Loc labelCurrentVersion}" />
+                <TextBlock
+                    x:Name="LabelCurrentVersion"
+                    Margin="4,0,0,0"
+                    VerticalAlignment="Center"
+                    Text="{x:Static core:Constants.APP_VERSION_FORMATTED}" />
+            </StackPanel>
+            <TextBlock
+                x:Name="TextBlockReleasesWebsite"
+                Grid.Column="1"
+                VerticalAlignment="Center"
+                PointerPressed="TextBlockReleasesWebsite_PointerPressed"
+                Text="{loc:Loc textBlockReleasesWebsite}"
+                ToolTip.Tip="{x:Static core:Constants.URL_RELEASES}" />
+            <Button
+                x:Name="ButtonDownloadUpdate"
+                Grid.Column="2"
+                Height="24"
+                MinWidth="100"
+                Margin="10,0,0,0"
+                Padding="10,0"
+                Click="ButtonDownloadUpdate_Click"
+                Content="{loc:Loc buttonDownloadUpdate}"
+                HorizontalContentAlignment="Center"
+                IsEnabled="False"
+                TabIndex="0" />
+        </Grid>
+    </Grid>
+</Window>

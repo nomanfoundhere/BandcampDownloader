@@ -1,12 +1,14 @@
-﻿using System.Runtime.InteropServices;
+using System.Runtime.InteropServices;
 using System.Windows;
 using BandcampDownloader.Core;
 using BandcampDownloader.Core.DependencyInjection;
 using BandcampDownloader.Core.Localization;
 using BandcampDownloader.Core.Logging;
+using BandcampDownloader.Core.Notifications;
 using BandcampDownloader.Core.Themes;
 using BandcampDownloader.Settings;
 using BandcampDownloader.UI.Dialogs;
+using Microsoft.Extensions.DependencyInjection;
 using NLog;
 
 namespace BandcampDownloader;
@@ -17,7 +19,7 @@ internal sealed partial class App
 
     protected override void OnStartup(StartupEventArgs e)
     {
-        var container = DependencyInjectionHelper.InitializeContainer();
+        var container = DependencyInjectionHelper.InitializeContainer(ConfigureWindowsServices);
 
         // 1. Initialize the logger first in order to be able to log any early errors
         var loggingService = container.GetService<ILoggingService>();
@@ -39,6 +41,17 @@ internal sealed partial class App
         // 6. Open the main window
         var windowMain = container.GetService<WindowMain>();
         windowMain.Show();
+    }
+
+    /// <summary>
+    /// Registers the services specific to the WPF (Windows) head of the application.
+    /// </summary>
+    private static void ConfigureWindowsServices(IServiceCollection serviceCollection)
+    {
+        serviceCollection.AddSingleton<IUserNotifier, WpfUserNotifier>();
+        serviceCollection.AddSingleton<ILanguageService, WpfLanguageService>();
+        serviceCollection.AddSingleton<IThemeService, ThemeService>();
+        serviceCollection.AddSingleton<WindowMain>();
     }
 
     private static void InitializeCoreServices(IContainer container)

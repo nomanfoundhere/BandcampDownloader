@@ -1,0 +1,136 @@
+<Window
+    x:Class="BandcampDownloader.Avalonia.UI.Settings.SettingsWindow"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:loc="clr-namespace:BandcampDownloader.Avalonia.Core.Localization"
+    xmlns:settings="clr-namespace:BandcampDownloader.Avalonia.UI.Settings"
+    Title="{loc:Loc windowSettings_Title}"
+    Width="700"
+    Height="420"
+    CanResize="False"
+    WindowStartupLocation="CenterOwner">
+    <Grid Margin="10" ColumnDefinitions="210,*" RowDefinitions="Auto,*,Auto">
+        <!--  Warning displayed when opening the settings while downloads are active  -->
+        <StackPanel
+            x:Name="PanelSettingsInfo"
+            Grid.Row="0"
+            Grid.ColumnSpan="2"
+            Margin="0,0,0,6"
+            HorizontalAlignment="Center"
+            Orientation="Horizontal"
+            Spacing="6"
+            IsVisible="False">
+            <Image
+                Width="16"
+                Height="16"
+                Source="avares://BandcampDownloader.Avalonia/Assets/InformationSmallWhite.png" />
+            <TextBlock
+                x:Name="LabelSettingsInfo"
+                VerticalAlignment="Center"
+                Foreground="Gray"
+                Text="{loc:Loc labelSettingsInfo}" />
+        </StackPanel>
+
+        <!--  Settings sections  -->
+        <ListBox
+            x:Name="ListBoxSections"
+            Grid.Row="1"
+            Grid.Column="0"
+            Width="200"
+            VerticalAlignment="Top"
+            SelectionChanged="ListBoxSections_SelectionChanged">
+            <ListBoxItem x:Name="ListBoxItemGeneral" IsSelected="True">
+                <StackPanel Orientation="Horizontal" Spacing="6">
+                    <Image Width="16" Height="16" Source="avares://BandcampDownloader.Avalonia/Assets/ApplicationBlue.png" />
+                    <TextBlock VerticalAlignment="Center" Text="{loc:Loc labelListBoxItemGeneral}" />
+                </StackPanel>
+            </ListBoxItem>
+            <ListBoxItem x:Name="ListBoxItemTags">
+                <StackPanel Orientation="Horizontal" Spacing="6">
+                    <Image Width="16" Height="16" Source="avares://BandcampDownloader.Avalonia/Assets/Tags.png" />
+                    <TextBlock VerticalAlignment="Center" Text="{loc:Loc labelListBoxItemTags}" />
+                </StackPanel>
+            </ListBoxItem>
+            <ListBoxItem x:Name="ListBoxItemCoverArt">
+                <StackPanel Orientation="Horizontal" Spacing="6">
+                    <Image Width="16" Height="16" Source="avares://BandcampDownloader.Avalonia/Assets/Picture.png" />
+                    <TextBlock VerticalAlignment="Center" Text="{loc:Loc labelListBoxItemCoverArt}" />
+                </StackPanel>
+            </ListBoxItem>
+            <ListBoxItem x:Name="ListBoxItemPlaylist">
+                <StackPanel Orientation="Horizontal" Spacing="6">
+                    <Image Width="16" Height="16" Source="avares://BandcampDownloader.Avalonia/Assets/DocumentMusicPlaylist.png" />
+                    <TextBlock VerticalAlignment="Center" Text="{loc:Loc labelListBoxItemPlaylist}" />
+                </StackPanel>
+            </ListBoxItem>
+            <ListBoxItem x:Name="ListBoxItemDownloads">
+                <StackPanel Orientation="Horizontal" Spacing="6">
+                    <Image Width="16" Height="16" Source="avares://BandcampDownloader.Avalonia/Assets/DriveDownload.png" />
+                    <TextBlock VerticalAlignment="Center" Text="{loc:Loc labelListBoxItemDownloads}" />
+                </StackPanel>
+            </ListBoxItem>
+            <ListBoxItem x:Name="ListBoxItemNetwork">
+                <StackPanel Orientation="Horizontal" Spacing="6">
+                    <Image Width="16" Height="16" Source="avares://BandcampDownloader.Avalonia/Assets/GlobeNetwork.png" />
+                    <TextBlock VerticalAlignment="Center" Text="{loc:Loc labelListBoxItemNetwork}" />
+                </StackPanel>
+            </ListBoxItem>
+            <ListBoxItem x:Name="ListBoxItemAdvanced">
+                <StackPanel Orientation="Horizontal" Spacing="6">
+                    <Image Width="16" Height="16" Source="avares://BandcampDownloader.Avalonia/Assets/Gear.png" />
+                    <TextBlock VerticalAlignment="Center" Text="{loc:Loc labelListBoxItemAdvanced}" />
+                </StackPanel>
+            </ListBoxItem>
+            <ListBoxItem x:Name="ListBoxItemAbout">
+                <StackPanel Orientation="Horizontal" Spacing="6">
+                    <Image Width="16" Height="16" Source="avares://BandcampDownloader.Avalonia/Assets/Information.png" />
+                    <TextBlock VerticalAlignment="Center" Text="{loc:Loc labelListBoxItemAbout}" />
+                </StackPanel>
+            </ListBoxItem>
+        </ListBox>
+
+        <!--  Settings content  -->
+        <Grid x:Name="GridContent" Grid.Row="1" Grid.Column="1" Margin="10,0,0,0">
+            <settings:UserControlSettingsGeneral x:Name="UserControlSettingsGeneral" />
+            <settings:UserControlSettingsTags x:Name="UserControlSettingsTags" IsVisible="False" />
+            <settings:UserControlSettingsCoverArt x:Name="UserControlSettingsCoverArt" IsVisible="False" />
+            <settings:UserControlSettingsPlaylist x:Name="UserControlSettingsPlaylist" IsVisible="False" />
+            <settings:UserControlSettingsDownloads x:Name="UserControlSettingsDownloads" IsVisible="False" />
+            <settings:UserControlSettingsNetwork x:Name="UserControlSettingsNetwork" IsVisible="False" />
+            <settings:UserControlSettingsAdvanced x:Name="UserControlSettingsAdvanced" IsVisible="False" />
+            <settings:UserControlSettingsAbout x:Name="UserControlSettingsAbout" IsVisible="False" />
+        </Grid>
+
+        <!--  Action buttons  -->
+        <Grid Grid.Row="2" Grid.ColumnSpan="2" Margin="0,10,0,0" ColumnDefinitions="*,Auto,Auto">
+            <Button
+                x:Name="ButtonResetSettings"
+                Grid.Column="1"
+                MinWidth="90"
+                Margin="0,0,10,0"
+                Click="ButtonResetSettings_Click"
+                ToolTip.Tip="{loc:Loc buttonResetSettings_ToolTip}">
+                <StackPanel Orientation="Horizontal" Spacing="6">
+                    <Image Width="16" Height="16" Source="avares://BandcampDownloader.Avalonia/Assets/ArrowCircle225Left.png" />
+                    <TextBlock VerticalAlignment="Center" Text="{loc:Loc labelButtonResetSettings}" />
+                </StackPanel>
+            </Button>
+            <StackPanel Grid.Column="2" Orientation="Horizontal" Spacing="10">
+                <Button
+                    x:Name="ButtonSave"
+                    MinWidth="90"
+                    Click="ButtonSave_Click"
+                    Content="{loc:Loc buttonSave}"
+                    HorizontalContentAlignment="Center"
+                    IsDefault="True" />
+                <Button
+                    x:Name="ButtonCancel"
+                    MinWidth="90"
+                    Click="ButtonCancel_Click"
+                    Content="{loc:Loc buttonCancel}"
+                    HorizontalContentAlignment="Center"
+                    IsCancel="True" />
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Window>

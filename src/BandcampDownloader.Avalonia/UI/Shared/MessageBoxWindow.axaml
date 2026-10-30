@@ -1,0 +1,55 @@
+<Window
+    x:Class="BandcampDownloader.Avalonia.UI.Shared.MessageBoxWindow"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    Width="440"
+    MinHeight="120"
+    SizeToContent="Height"
+    CanResize="False"
+    ShowInTaskbar="False"
+    WindowStartupLocation="CenterOwner">
+    <Grid Margin="18" ColumnDefinitions="Auto,*" RowDefinitions="*,Auto">
+        <TextBlock
+            x:Name="IconText"
+            Margin="0,0,14,0"
+            VerticalAlignment="Top"
+            FontSize="28" />
+        <TextBlock
+            x:Name="MessageText"
+            Grid.Column="1"
+            MaxWidth="370"
+            VerticalAlignment="Center"
+            TextWrapping="Wrap" />
+        <StackPanel
+            Grid.Row="1"
+            Grid.ColumnSpan="2"
+            Margin="0,18,0,0"
+            HorizontalAlignment="Right"
+            Orientation="Horizontal"
+            Spacing="8">
+            <Button
+                x:Name="ButtonOk"
+                MinWidth="84"
+                Click="ButtonOk_Click"
+                IsDefault="True"
+                HorizontalContentAlignment="Center" />
+            <Button
+                x:Name="ButtonYes"
+                MinWidth="84"
+                Click="ButtonYes_Click"
+                IsDefault="True"
+                HorizontalContentAlignment="Center" />
+            <Button
+                x:Name="ButtonNo"
+                MinWidth="84"
+                Click="ButtonNo_Click"
+                HorizontalContentAlignment="Center" />
+            <Button
+                x:Name="ButtonCancel"
+                MinWidth="84"
+                Click="ButtonCancel_Click"
+                IsCancel="True"
+                HorizontalContentAlignment="Center" />
+        </StackPanel>
+    </Grid>
+</Window>

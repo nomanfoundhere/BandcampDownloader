@@ -1,0 +1,73 @@
+<UserControl
+    x:Class="BandcampDownloader.Avalonia.UI.Settings.UserControlSettingsPlaylist"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:loc="clr-namespace:BandcampDownloader.Avalonia.Core.Localization"
+    Width="430">
+    <Grid
+        x:Name="GridMain"
+        VerticalAlignment="Top"
+        RowDefinitions="32,32,32,32">
+        <CheckBox
+            x:Name="CheckBoxCreatePlaylist"
+            Grid.Row="0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Center"
+            Content="{loc:Loc checkBoxCreatePlaylist}"
+            IsChecked="{Binding CreatePlaylist, Mode=OneWay}"
+            ToolTip.Tip="{loc:Loc checkBoxCreatePlaylist_ToolTip}" />
+        <Grid
+            x:Name="GridPlaylistFormat"
+            Grid.Row="1"
+            Margin="15,0,0,0"
+            ColumnDefinitions="Auto,Auto,Auto">
+            <Label
+                x:Name="LabelPlaylistFormat"
+                Grid.Column="0"
+                VerticalAlignment="Center"
+                Content="{loc:Loc labelPlaylistFormat}" />
+            <ComboBox
+                x:Name="ComboBoxPlaylistFormat"
+                Grid.Column="1"
+                Width="200"
+                VerticalAlignment="Center"
+                ItemTemplate="{StaticResource EnumOptionTemplate}"
+                IsEnabled="{Binding IsChecked, ElementName=CheckBoxCreatePlaylist}"
+                SelectionChanged="ComboBoxPlaylistFormat_SelectionChanged" />
+        </Grid>
+        <Grid
+            x:Name="GridCoverArtFileNameFormat"
+            Grid.Row="2"
+            Margin="15,0,0,0"
+            ColumnDefinitions="Auto,*,Auto">
+            <Label
+                x:Name="LabelPlaylistFileNameFormat"
+                Grid.Column="0"
+                VerticalAlignment="Center"
+                Content="{loc:Loc labelPlaylistFileNameFormat}" />
+            <TextBox
+                x:Name="TextBoxPlaylistFileNameFormat"
+                Grid.Column="1"
+                Margin="0,0,5,0"
+                VerticalAlignment="Center"
+                VerticalContentAlignment="Center"
+                Text="{Binding PlaylistFileNameFormat, Mode=OneWay}"
+                IsEnabled="{Binding IsChecked, ElementName=CheckBoxCreatePlaylist}"
+                ToolTip.Tip="{loc:Loc textBoxPlaylistFileNameFormat_ToolTip}" />
+            <Label
+                x:Name="LabelPlaylistFileNameExtension"
+                Grid.Column="2"
+                VerticalAlignment="Center" />
+        </Grid>
+        <CheckBox
+            x:Name="CheckBoxM3UExtended"
+            Grid.Row="3"
+            Margin="20,0,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Center"
+            Content="{loc:Loc checkBoxM3uExtended}"
+            IsChecked="{Binding M3uExtended, Mode=OneWay}"
+            IsEnabled="{Binding IsChecked, ElementName=CheckBoxCreatePlaylist}"
+            ToolTip.Tip="{loc:Loc checkBoxM3uExtended_ToolTip}" />
+    </Grid>
+</UserControl>

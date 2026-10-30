@@ -1,3 +1,16 @@
+# Unreleased
+
+## New features
+
+* Added a macOS application (Apple Silicon and Intel) built with [Avalonia](https://avaloniaui.net/), sharing the same cross-platform core as the Windows application. See [docs/macos.md](docs/macos.md).
+
+## Improvements
+
+* Extracted the platform-independent logic into a `BandcampDownloader.Core` library, shared by the Windows (WPF) and macOS (Avalonia) heads.
+* Settings and log files now live in the platform's standard per-user application data directory (`%APPDATA%` on Windows, `~/Library/Application Support/BandcampDownloader` on macOS) instead of next to the executable. Existing Windows installations migrate their settings automatically on first start.
+* Windows: unobserved background task exceptions are now logged instead of showing a modal error dialog.
+* File names and paths are now sanitized and composed in a cross-platform way (no hard-coded backslashes, byte-safe length limits for long titles).
+
 # 1.5.2 (2025-12-01)
 
 ## Improvements

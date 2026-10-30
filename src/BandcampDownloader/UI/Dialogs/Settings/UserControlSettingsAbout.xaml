@@ -6,11 +6,11 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:lex="http://wpflocalizeextension.codeplex.com"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:core="clr-namespace:BandcampDownloader.Core"
+    xmlns:core="clr-namespace:BandcampDownloader.Core;assembly=BandcampDownloader.Core"
     Width="410"
     Height="200"
     lex:LocalizeDictionary.DesignCulture="en"
-    lex:ResxLocalizationProvider.DefaultAssembly="BandcampDownloader"
+    lex:ResxLocalizationProvider.DefaultAssembly="BandcampDownloader.Core"
     lex:ResxLocalizationProvider.DefaultDictionary="Resources"
     KeyboardNavigation.TabNavigation="Local"
     mc:Ignorable="d">

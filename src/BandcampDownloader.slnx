@@ -16,6 +16,15 @@
     <File Path="../.github/workflows/dotnet.yml" />
     <File Path="../.github/workflows/github-release.yml" />
   </Folder>
+  <Project Path="BandcampDownloader.Avalonia.Tests/BandcampDownloader.Avalonia.Tests.csproj">
+    <Platform Project="x64" />
+  </Project>
+  <Project Path="BandcampDownloader.Avalonia/BandcampDownloader.Avalonia.csproj">
+    <Platform Project="x64" />
+  </Project>
+  <Project Path="BandcampDownloader.Core/BandcampDownloader.Core.csproj">
+    <Platform Project="x64" />
+  </Project>
   <Project Path="BandcampDownloader.IntegrationTests/BandcampDownloader.IntegrationTests.csproj">
     <Platform Project="x64" />
   </Project>

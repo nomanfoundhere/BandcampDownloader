@@ -1,0 +1,59 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <!--
+        Cross-platform core of BandcampDownloader: everything except the UI.
+        This project must stay free of Windows-only APIs (WPF, WinForms, registry, ...)
+        so that it can be shared by the Windows (WPF) and macOS (Avalonia) heads.
+    -->
+    <TargetFramework>net10.0</TargetFramework>
+    <!-- Keep the root namespace (and therefore the embedded resource names) unchanged. -->
+    <RootNamespace>BandcampDownloader</RootNamespace>
+    <AssemblyTitle>BandcampDownloader.Core</AssemblyTitle>
+    <Description>Cross-platform core of BandcampDownloader</Description>
+    <Product>BandcampDownloader</Product>
+    <Copyright>ⓒ Otiel $([System.DateTime]::Now.Year)</Copyright>
+    <EnableDefaultEmbeddedResourceItems>false</EnableDefaultEmbeddedResourceItems>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- Localized resources are embedded explicitly so they are available on every platform. -->
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.*.resx" />
+    <Compile Update="Properties\Resources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <InternalsVisibleTo Include="BandcampDownloader" />
+    <InternalsVisibleTo Include="BandcampDownloader.Avalonia" />
+    <InternalsVisibleTo Include="BandcampDownloader.UnitTests" />
+    <InternalsVisibleTo Include="BandcampDownloader.IntegrationTests" />
+    <InternalsVisibleTo Include="BandcampDownloader.Avalonia.Tests" />
+    <InternalsVisibleTo Include="DynamicProxyGenAssembly2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Config.Net" Version="5.2.1" />
+    <PackageReference Include="Downloader" Version="5.9.8" />
+    <PackageReference Include="HtmlAgilityPack" Version="1.13.0" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="10.0.12" />
+    <PackageReference Include="Microsoft.Extensions.Http" Version="10.0.12" />
+    <PackageReference Include="NLog" Version="6.2.1" />
+    <PackageReference Include="PlaylistsNET" Version="1.4.1" />
+    <!--
+        SixLabors.ImageSharp is pinned to the same version as the upstream WPF application: 3.2.0+
+        switched to a commercial license (Release builds then require a paid license key).
+        The known-advisory audit suppressions are defined in src/Directory.Build.props.
+    -->
+    <PackageReference Include="SixLabors.ImageSharp" Version="3.1.12" />
+    <PackageReference Include="TagLibSharp" Version="2.3.0" />
+  </ItemGroup>
+
+</Project>

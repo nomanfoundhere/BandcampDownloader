@@ -1,0 +1,89 @@
+name: macOS build / test # macOS (Avalonia) head of BandcampDownloader
+
+on:
+    push:
+        branches: [ "master" ]
+    pull_request:
+        branches: [ "master" ]
+
+jobs:
+    # Build and test the cross-platform Core and the macOS (Avalonia) head
+    build-and-test:
+        runs-on: macos-latest
+
+        env:
+            DOTNET_NOLOGO: true
+            DOTNET_CLI_TELEMETRY_OPTOUT: true
+            NUGET_PACKAGES: ${{ github.workspace }}/.nuget/packages
+            DOTNET_CLI_HOME: ${{ github.workspace }}/.dotnet-home
+
+        steps:
+            -   name: Checkout
+                uses: actions/checkout@v7
+                with:
+                    fetch-depth: 0
+
+            -   name: Install .NET
+                uses: actions/setup-dotnet@v6
+                with:
+                    dotnet-version: 10.0.x
+
+            -   name: Display dotnet version
+                run: dotnet --info
+
+            -   name: Restore (Core + macOS head + tests + Windows head)
+                run: |
+                    dotnet restore src/BandcampDownloader.Core/BandcampDownloader.Core.csproj
+                    dotnet restore src/BandcampDownloader.Avalonia/BandcampDownloader.Avalonia.csproj
+                    dotnet restore src/BandcampDownloader.UnitTests/BandcampDownloader.UnitTests.csproj
+                    dotnet restore src/BandcampDownloader.Avalonia.Tests/BandcampDownloader.Avalonia.Tests.csproj
+                    dotnet restore src/BandcampDownloader/BandcampDownloader.csproj -p:EnableWindowsTargeting=true
+
+            -   name: Build Core and macOS head
+                run: |
+                    dotnet build --no-restore -c Release src/BandcampDownloader.Core/BandcampDownloader.Core.csproj
+                    dotnet build --no-restore -c Release src/BandcampDownloader.Avalonia/BandcampDownloader.Avalonia.csproj
+
+            -   name: Run unit tests
+                run: dotnet test --no-restore -c Release src/BandcampDownloader.UnitTests/BandcampDownloader.UnitTests.csproj
+
+            -   name: Run Avalonia headless UI tests
+                run: dotnet test --no-restore -c Release src/BandcampDownloader.Avalonia.Tests/BandcampDownloader.Avalonia.Tests.csproj
+
+            -   name: Build Windows (WPF) head on macOS (cross-compilation check)
+                run: >
+                    dotnet build --no-restore -c Release src/BandcampDownloader/BandcampDownloader.csproj
+                    -p:EnableWindowsTargeting=true -p:RuntimeIdentifier=
+                    -p:PublishSingleFile=false -p:SelfContained=false
+
+    # Package the macOS .app as a downloadable artifact
+    package:
+        needs: build-and-test
+        runs-on: macos-latest
+
+        env:
+            DOTNET_NOLOGO: true
+            DOTNET_CLI_TELEMETRY_OPTOUT: true
+            NUGET_PACKAGES: ${{ github.workspace }}/.nuget/packages
+            DOTNET_CLI_HOME: ${{ github.workspace }}/.dotnet-home
+
+        steps:
+            -   name: Checkout
+                uses: actions/checkout@v7
+                with:
+                    fetch-depth: 0
+
+            -   name: Install .NET
+                uses: actions/setup-dotnet@v6
+                with:
+                    dotnet-version: 10.0.x
+
+            -   name: Package macOS application
+                run: scripts/package-macos.sh
+
+            -   name: Upload .app artifact
+                uses: actions/upload-artifact@v4
+                with:
+                    name: BandcampDownloader-macOS
+                    path: dist/*.zip
+                    if-no-files-found: error

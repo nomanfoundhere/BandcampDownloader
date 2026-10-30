@@ -14,7 +14,7 @@
     Width="620"
     Height="380"
     lex:LocalizeDictionary.DesignCulture="en"
-    lex:ResxLocalizationProvider.DefaultAssembly="BandcampDownloader"
+    lex:ResxLocalizationProvider.DefaultAssembly="BandcampDownloader.Core"
     lex:ResxLocalizationProvider.DefaultDictionary="Resources"
     FocusManager.FocusedElement="{Binding ElementName=ListBoxSections}"
     Icon="/BandcampDownloader;component/Resources/Cloud.ico"

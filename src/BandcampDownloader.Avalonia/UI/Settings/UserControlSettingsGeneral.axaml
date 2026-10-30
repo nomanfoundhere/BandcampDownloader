@@ -1,0 +1,105 @@
+<UserControl
+    x:Class="BandcampDownloader.Avalonia.UI.Settings.UserControlSettingsGeneral"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:loc="clr-namespace:BandcampDownloader.Avalonia.Core.Localization"
+    Width="430">
+    <Grid
+        x:Name="GridMain"
+        VerticalAlignment="Top"
+        RowDefinitions="32,32,32,32,32">
+        <Grid
+            x:Name="GridCheckForUpdates"
+            Grid.Row="0"
+            HorizontalAlignment="Left"
+            ColumnDefinitions="Auto,Auto">
+            <CheckBox
+                x:Name="CheckBoxCheckForUpdates"
+                Grid.Column="0"
+                VerticalAlignment="Center"
+                Content="{loc:Loc checkBoxCheckForUpdates}"
+                IsChecked="{Binding CheckForUpdates, Mode=OneWay}">
+                <ToolTip.Tip>
+                    <StackPanel>
+                        <TextBlock Text="{loc:Loc checkBoxCheckForUpdates_ToolTip_Part}" />
+                        <TextBlock x:Name="TextBlockCheckForUpdatesToolTipUrl" />
+                    </StackPanel>
+                </ToolTip.Tip>
+            </CheckBox>
+            <Button
+                x:Name="ButtonCheckForUpdates"
+                Grid.Column="1"
+                Margin="10,0,0,0"
+                Padding="10,0,10,0"
+                VerticalAlignment="Center"
+                Click="ButtonCheckForUpdates_Click"
+                Content="{loc:Loc buttonCheckForUpdates}" />
+        </Grid>
+        <Grid
+            x:Name="GridVerboseLog"
+            Grid.Row="1"
+            ColumnDefinitions="Auto,*">
+            <CheckBox
+                x:Name="CheckBoxVerboseLog"
+                Grid.Column="0"
+                VerticalAlignment="Center"
+                Content="{loc:Loc checkBoxVerboseLog}"
+                IsChecked="{Binding ShowVerboseLog, Mode=OneWay}"
+                ToolTip.Tip="{loc:Loc checkBoxVerboseLog_ToolTip}" />
+            <Label
+                x:Name="LabelVerboseLogInfo"
+                Grid.Column="1"
+                VerticalAlignment="Center"
+                Content="{loc:Loc labelVerboseLogInfo}"
+                Foreground="#858585" />
+        </Grid>
+        <CheckBox
+            x:Name="CheckBoxEnableApplicationSounds"
+            Grid.Row="2"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Center"
+            Content="{loc:Loc checkBoxEnableApplicationSounds}"
+            IsChecked="{Binding EnableApplicationSounds, Mode=OneWay}"
+            ToolTip.Tip="{loc:Loc checkBoxEnableApplicationSounds_ToolTip}" />
+        <Grid
+            x:Name="GridLanguage"
+            Grid.Row="3"
+            ColumnDefinitions="Auto,Auto,Auto">
+            <Label
+                x:Name="LabelLanguage"
+                Grid.Column="0"
+                VerticalAlignment="Center"
+                Content="{loc:Loc labelLanguage}" />
+            <ComboBox
+                x:Name="ComboBoxLanguage"
+                Grid.Column="1"
+                Width="215"
+                VerticalAlignment="Center"
+                ItemTemplate="{StaticResource EnumOptionTemplate}"
+                SelectionChanged="ComboBoxLanguage_SelectionChanged" />
+            <TextBlock
+                x:Name="TextBlockTranslationHelp"
+                Grid.Column="2"
+                Margin="10,0,0,0"
+                VerticalAlignment="Center"
+                Text="{loc:Loc textBlockTranslationHelp}" />
+        </Grid>
+        <Grid
+            x:Name="GridTheme"
+            Grid.Row="4"
+            ColumnDefinitions="Auto,Auto">
+            <Label
+                x:Name="LabelTheme"
+                Grid.Column="0"
+                VerticalAlignment="Center"
+                Content="{loc:Loc labelTheme}" />
+            <ComboBox
+                x:Name="ComboBoxTheme"
+                Grid.Column="1"
+                Width="215"
+                VerticalAlignment="Center"
+                ItemTemplate="{StaticResource EnumOptionTemplate}"
+                SelectionChanged="ComboBoxTheme_SelectionChanged" />
+        </Grid>
+    </Grid>
+</UserControl>

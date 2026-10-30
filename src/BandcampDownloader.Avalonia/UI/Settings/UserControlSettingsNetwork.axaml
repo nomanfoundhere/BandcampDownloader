@@ -1,0 +1,72 @@
+<UserControl
+    x:Class="BandcampDownloader.Avalonia.UI.Settings.UserControlSettingsNetwork"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:loc="clr-namespace:BandcampDownloader.Avalonia.Core.Localization"
+    Width="430">
+    <Grid x:Name="GridMain" VerticalAlignment="Top" RowDefinitions="32,32,32,32,32">
+        <Label
+            x:Name="LabelProxy"
+            Grid.Row="0"
+            VerticalAlignment="Center"
+            Content="{loc:Loc labelProxy}" />
+        <RadioButton
+            x:Name="RadioButtonNoProxy"
+            Grid.Row="1"
+            Margin="20,0,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Center"
+            GroupName="ProxyType"
+            Content="{loc:Loc radioButtonNoProxy}" />
+        <RadioButton
+            x:Name="RadioButtonSystemProxy"
+            Grid.Row="2"
+            Margin="20,0,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Center"
+            GroupName="ProxyType"
+            Content="{loc:Loc radioButtonSystemProxy}" />
+        <RadioButton
+            x:Name="RadioButtonManualProxy"
+            Grid.Row="3"
+            Margin="20,0,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Center"
+            GroupName="ProxyType"
+            Content="{loc:Loc radioButtonManualProxy}" />
+        <Grid
+            x:Name="GridManualProxy"
+            Grid.Row="4"
+            Margin="34,0,0,0"
+            HorizontalAlignment="Left"
+            ColumnDefinitions="Auto,Auto,Auto,Auto">
+            <Label
+                x:Name="LabelHttp"
+                Grid.Column="0"
+                VerticalAlignment="Center"
+                Content="{loc:Loc labelHttp}" />
+            <TextBox
+                x:Name="TextBoxHttpAddress"
+                Grid.Column="1"
+                Width="190"
+                VerticalAlignment="Center"
+                VerticalContentAlignment="Center"
+                IsEnabled="{Binding IsChecked, ElementName=RadioButtonManualProxy}"
+                Text="{Binding ProxyHttpAddress, Mode=OneWay}" />
+            <Label
+                x:Name="LabelHttpPort"
+                Grid.Column="2"
+                Margin="15,0,0,0"
+                VerticalAlignment="Center"
+                Content="{loc:Loc labelHttpPort}" />
+            <TextBox
+                x:Name="TextBoxHttpPort"
+                Grid.Column="3"
+                Width="80"
+                VerticalAlignment="Center"
+                VerticalContentAlignment="Center"
+                IsEnabled="{Binding IsChecked, ElementName=RadioButtonManualProxy}"
+                Text="{Binding ProxyHttpPort, Mode=OneWay}" />
+        </Grid>
+    </Grid>
+</UserControl>

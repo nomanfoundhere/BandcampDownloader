@@ -1,0 +1,15 @@
+<Application
+    x:Class="BandcampDownloader.Avalonia.App"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    RequestedThemeVariant="Light">
+    <Application.Resources>
+        <!-- Used by every ComboBox displaying an EnumOption<T> -->
+        <DataTemplate x:Key="EnumOptionTemplate">
+            <TextBlock Text="{Binding Description}" />
+        </DataTemplate>
+    </Application.Resources>
+    <Application.Styles>
+        <FluentTheme />
+    </Application.Styles>
+</Application>

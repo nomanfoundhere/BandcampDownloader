@@ -1,0 +1,55 @@
+<UserControl
+    x:Class="BandcampDownloader.Avalonia.UI.Settings.UserControlSettingsDownloads"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:loc="clr-namespace:BandcampDownloader.Avalonia.Core.Localization"
+    Width="430">
+    <Grid
+        x:Name="GridMain"
+        VerticalAlignment="Top"
+        ColumnDefinitions="Auto,*"
+        RowDefinitions="32,32,32">
+        <Label
+            x:Name="LabelMaxConcurrentAlbumsDownloads"
+            Grid.Row="0"
+            Grid.Column="0"
+            VerticalAlignment="Center"
+            Content="{loc:Loc labelMaxConcurrentAlbumsDownloads}" />
+        <TextBox
+            x:Name="TextBoxMaxConcurrentAlbumsDownloads"
+            Grid.Row="0"
+            Grid.Column="1"
+            Width="55"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Center"
+            VerticalContentAlignment="Center"
+            Text="{Binding MaxConcurrentAlbumsDownloads, Mode=OneWay}"
+            ToolTip.Tip="{loc:Loc textBoxMaxConcurrentAlbumsDownloads_ToolTip}" />
+        <Label
+            x:Name="LabelMaxConcurrentTracksDownloads"
+            Grid.Row="1"
+            Grid.Column="0"
+            VerticalAlignment="Center"
+            Content="{loc:Loc labelMaxConcurrentTracksDownloads}" />
+        <TextBox
+            x:Name="TextBoxMaxConcurrentTracksDownloads"
+            Grid.Row="1"
+            Grid.Column="1"
+            Width="55"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Center"
+            VerticalContentAlignment="Center"
+            Text="{Binding MaxConcurrentTracksDownloads, Mode=OneWay}"
+            ToolTip.Tip="{loc:Loc textBoxMaxConcurrentTracksDownloads_ToolTip}" />
+        <CheckBox
+            x:Name="CheckBoxRetrieveFilesSize"
+            Grid.Row="2"
+            Grid.Column="0"
+            Grid.ColumnSpan="2"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Center"
+            Content="{loc:Loc checkBoxRetrieveFilesSize}"
+            IsChecked="{Binding RetrieveFilesSize, Mode=OneWay}"
+            ToolTip.Tip="{loc:Loc checkBoxRetrieveFilesSize_ToolTip}" />
+    </Grid>
+</UserControl>

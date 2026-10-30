@@ -1,0 +1,131 @@
+<UserControl
+    x:Class="BandcampDownloader.Avalonia.UI.Settings.UserControlSettingsCoverArt"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:loc="clr-namespace:BandcampDownloader.Avalonia.Core.Localization"
+    Width="430">
+    <Grid
+        x:Name="GridMain"
+        VerticalAlignment="Top"
+        RowDefinitions="32,32,32,32,32,32,32,32,32">
+        <CheckBox
+            x:Name="CheckBoxSaveCoverArtInFolder"
+            Grid.Row="0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Center"
+            Content="{loc:Loc checkBoxSaveCoverArtInFolder}"
+            IsChecked="{Binding SaveCoverArtInFolder, Mode=OneWay}"
+            ToolTip.Tip="{loc:Loc checkBoxSaveCoverArtInFolder_ToolTip}" />
+        <Grid
+            x:Name="GridCoverArtFileNameFormat"
+            Grid.Row="1"
+            Margin="15,0,0,0"
+            ColumnDefinitions="Auto,*,Auto">
+            <Label
+                x:Name="LabelCoverArtFileNameFormat"
+                Grid.Column="0"
+                VerticalAlignment="Center"
+                Content="{loc:Loc labelCoverArtFileNameFormat}" />
+            <TextBox
+                x:Name="TextBoxCoverArtFileNameFormat"
+                Grid.Column="1"
+                Margin="0,0,5,0"
+                VerticalAlignment="Center"
+                VerticalContentAlignment="Center"
+                Text="{Binding CoverArtFileNameFormat, Mode=OneWay}"
+                IsEnabled="{Binding IsChecked, ElementName=CheckBoxSaveCoverArtInFolder}"
+                ToolTip.Tip="{loc:Loc textBoxCoverArtFileNameFormat_ToolTip}" />
+            <Label
+                x:Name="LabelCoverArtFileNameExtension"
+                Grid.Column="2"
+                VerticalAlignment="Center"
+                Content=".jpg" />
+        </Grid>
+        <CheckBox
+            x:Name="CheckBoxCoverArtInFolderConvertToJpg"
+            Grid.Row="2"
+            Margin="20,0,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Center"
+            Content="{loc:Loc checkBoxCoverArtInFolderConvertToJpg}"
+            IsChecked="{Binding CoverArtInFolderConvertToJpg, Mode=OneWay}"
+            IsEnabled="{Binding IsChecked, ElementName=CheckBoxSaveCoverArtInFolder}"
+            ToolTip.Tip="{loc:Loc checkBoxCoverArtInFolderConvertToJpg_ToolTip}" />
+        <CheckBox
+            x:Name="CheckBoxCoverArtInFolderResize"
+            Grid.Row="3"
+            Margin="20,0,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Center"
+            Content="{loc:Loc checkBoxCoverArtInFolderResize}"
+            IsChecked="{Binding CoverArtInFolderResize, Mode=OneWay}"
+            IsEnabled="{Binding IsChecked, ElementName=CheckBoxSaveCoverArtInFolder}"
+            ToolTip.Tip="{loc:Loc checkBoxCoverArtInFolderResize_ToolTip}" />
+        <Grid
+            x:Name="GridCoverArtInFolderMaxSize"
+            Grid.Row="4"
+            Margin="35,0,0,0"
+            HorizontalAlignment="Left"
+            ColumnDefinitions="Auto,Auto">
+            <Label
+                x:Name="LabelCoverArtInFolderMaxSize"
+                Grid.Column="0"
+                VerticalAlignment="Center"
+                Content="{loc:Loc labelCoverArtInFolderMaxSize}" />
+            <TextBox
+                x:Name="TextBoxCoverArtInFolderMaxSize"
+                Grid.Column="1"
+                Width="55"
+                VerticalAlignment="Center"
+                VerticalContentAlignment="Center"
+                Text="{Binding CoverArtInFolderMaxSize, Mode=OneWay}" />
+        </Grid>
+        <CheckBox
+            x:Name="CheckBoxSaveCoverArtInTags"
+            Grid.Row="5"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Center"
+            Content="{loc:Loc checkBoxSaveCoverArtInTags}"
+            IsChecked="{Binding SaveCoverArtInTags, Mode=OneWay}"
+            ToolTip.Tip="{loc:Loc checkBoxSaveCoverArtInTags_ToolTip}" />
+        <CheckBox
+            x:Name="CheckBoxCoverArtInTagsConvertToJpg"
+            Grid.Row="6"
+            Margin="20,0,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Center"
+            Content="{loc:Loc checkBoxCoverArtInTagsConvertToJpg}"
+            IsChecked="{Binding CoverArtInTagsConvertToJpg, Mode=OneWay}"
+            IsEnabled="{Binding IsChecked, ElementName=CheckBoxSaveCoverArtInTags}"
+            ToolTip.Tip="{loc:Loc checkBoxCoverArtInTagsConvertToJpg_ToolTip}" />
+        <CheckBox
+            x:Name="CheckBoxCoverArtInTagsResize"
+            Grid.Row="7"
+            Margin="20,0,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Center"
+            Content="{loc:Loc checkBoxCoverArtInTagsResize}"
+            IsChecked="{Binding CoverArtInTagsResize, Mode=OneWay}"
+            IsEnabled="{Binding IsChecked, ElementName=CheckBoxSaveCoverArtInTags}"
+            ToolTip.Tip="{loc:Loc checkBoxCoverArtInTagsResize_ToolTip}" />
+        <Grid
+            x:Name="GridCoverArtInTagsMaxSize"
+            Grid.Row="8"
+            Margin="35,0,0,0"
+            HorizontalAlignment="Left"
+            ColumnDefinitions="Auto,Auto">
+            <Label
+                x:Name="LabelCoverArtInTagsMaxSize"
+                Grid.Column="0"
+                VerticalAlignment="Center"
+                Content="{loc:Loc labelCoverArtInTagsMaxSize}" />
+            <TextBox
+                x:Name="TextBoxCoverArtInTagsMaxSize"
+                Grid.Column="1"
+                Width="55"
+                VerticalAlignment="Center"
+                VerticalContentAlignment="Center"
+                Text="{Binding CoverArtInTagsMaxSize, Mode=OneWay}" />
+        </Grid>
+    </Grid>
+</UserControl>

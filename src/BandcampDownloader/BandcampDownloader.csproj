@@ -1,9 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
-
-  <PropertyGroup>
-    <!-- Version -->
-    <VersionPrefix>1.5.2</VersionPrefix>
-  </PropertyGroup>
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <!-- Assembly attributes -->
@@ -32,21 +27,13 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <InternalsVisibleTo Include="BandcampDownloader.UnitTests" />
-    <InternalsVisibleTo Include="DynamicProxyGenAssembly2" />
+    <ProjectReference Include="..\BandcampDownloader.Core\BandcampDownloader.Core.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Config.Net" Version="5.2.1" />
-    <PackageReference Include="Downloader" Version="5.9.8" />
-    <PackageReference Include="HtmlAgilityPack" Version="1.13.0" />
     <PackageReference Include="Markdig.Wpf" Version="0.5.0.1" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="10.0.12" />
-    <PackageReference Include="Microsoft.Extensions.Http" Version="10.0.12" />
     <PackageReference Include="NLog" Version="6.2.1" />
-    <PackageReference Include="PlaylistsNET" Version="1.4.1" />
-    <PackageReference Include="SixLabors.ImageSharp" Version="3.1.12" />
-    <PackageReference Include="TagLibSharp" Version="2.3.0" />
     <PackageReference Include="WPFLocalizeExtension" Version="3.10.0" />
     <PackageReference Include="WpfMessageBox" Version="2.0.0" />
   </ItemGroup>

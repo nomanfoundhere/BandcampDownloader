@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!--
+  Template for scripts/package-macos.sh. Do not edit the installed copy (inside the .app):
+  change this file instead. Placeholders replaced by the script:
+    __APP_NAME__        human readable name, e.g. "Bandcamp Downloader"
+    __EXECUTABLE_NAME__ file name of the apphost in Contents/MacOS
+    __BUNDLE_ID__       reverse-DNS bundle identifier
+    __VERSION__         CFBundleShortVersionString and CFBundleVersion (from VersionPrefix)
+    __MIN_MACOS__       LSMinimumSystemVersion
+    __COPYRIGHT__       copyright line shown in Finder "Get Info"
+-->
+<plist version="1.0">
+<dict>
+	<key>CFBundleDevelopmentRegion</key>
+	<string>en</string>
+	<key>CFBundleDisplayName</key>
+	<string>__APP_NAME__</string>
+	<key>CFBundleExecutable</key>
+	<string>__EXECUTABLE_NAME__</string>
+	<key>CFBundleIconFile</key>
+	<string>icon.icns</string>
+	<key>CFBundleIdentifier</key>
+	<string>__BUNDLE_ID__</string>
+	<key>CFBundleInfoDictionaryVersion</key>
+	<string>6.0</string>
+	<key>CFBundleName</key>
+	<string>__APP_NAME__</string>
+	<key>CFBundlePackageType</key>
+	<string>APPL</string>
+	<key>CFBundleShortVersionString</key>
+	<string>__VERSION__</string>
+	<key>CFBundleSignature</key>
+	<string>????</string>
+	<key>CFBundleVersion</key>
+	<string>__VERSION__</string>
+	<key>LSApplicationCategoryType</key>
+	<string>public.app-category.music</string>
+	<key>LSMinimumSystemVersion</key>
+	<string>__MIN_MACOS__</string>
+	<key>NSHighResolutionCapable</key>
+	<true/>
+	<key>NSHumanReadableCopyright</key>
+	<string>__COPYRIGHT__</string>
+	<key>NSPrincipalClass</key>
+	<string>NSApplication</string>
+</dict>
+</plist>
