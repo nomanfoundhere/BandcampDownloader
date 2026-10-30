@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using BandcampDownloader.Helpers;
@@ -68,7 +69,7 @@ internal sealed class TrackFileService : ITrackFileService
                 };
 
                 await Parallel.ForEachAsync(
-                    album.Tracks,
+                    album.Tracks.Where(track => !string.IsNullOrWhiteSpace(track.Mp3Url)),
                     parallelOptions,
                     async (track, ct) =>
                     {
@@ -83,7 +84,7 @@ internal sealed class TrackFileService : ITrackFileService
             }
             else
             {
-                foreach (var track in album.Tracks)
+                foreach (var track in album.Tracks.Where(track => !string.IsNullOrWhiteSpace(track.Mp3Url)))
                 {
                     var trackFile = new TrackFile(track.Mp3Url, 0, 0);
                     files.Add(trackFile);

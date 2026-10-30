@@ -13,4 +13,10 @@ internal sealed class JsonAlbumData
 
     [JsonPropertyName("publish_date")]
     public DateTime? PublishDate { get; set; }
+
+    /// <summary>
+    /// The type of the current page: "album" or "track".
+    /// </summary>
+    [JsonPropertyName("type")]
+    public string Type { get; set; }
 }

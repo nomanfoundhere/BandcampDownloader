@@ -46,7 +46,7 @@ internal sealed class AlbumInfoParser : IAlbumInfoParser
         };
         options.Converters.Add(new BandcampDateTimeJsonConverter());
 
-        var album = JsonSerializer.Deserialize<JsonAlbum>(htmlAlbumData, options).ToAlbum();
+        var album = JsonSerializer.Deserialize<JsonAlbum>(htmlAlbumData, options).ToAlbum(GetBandId(htmlContent));
 
         cancellationToken.ThrowIfCancellationRequested();
 
@@ -65,6 +65,21 @@ internal sealed class AlbumInfoParser : IAlbumInfoParser
         }
 
         return album;
+    }
+
+    /// <summary>
+    /// Extracts the Bandcamp id of the band from the page HTML. It is used to query the Bandcamp API
+    /// when the page data does not contain all the MP3 URLs.
+    /// </summary>
+    private static long? GetBandId(string htmlContent)
+    {
+        var match = Regex.Match(htmlContent, "data-band-id=\"(?<bandId>[0-9]+)\"");
+        if (match.Success && long.TryParse(match.Groups["bandId"].Value, out var bandId))
+        {
+            return bandId;
+        }
+
+        return null;
     }
 
     private static string FixJson(string albumData)

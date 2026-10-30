@@ -57,6 +57,7 @@ internal static class CoreServices
         serviceCollection.AddSingleton<IAlbumInfoRetriever, AlbumInfoRetriever>();
         serviceCollection.AddSingleton<IAlbumInfoParser, AlbumInfoParser>();
         serviceCollection.AddSingleton<IAlbumUrlRetriever, AlbumUrlRetriever>();
+        serviceCollection.AddSingleton<IBandcampApiService, BandcampApiService>();
         serviceCollection.AddSingleton<IDiscographyService, DiscographyService>();
         serviceCollection.AddSingleton<IDownloadManager, DownloadManager>();
         serviceCollection.AddSingleton<IExceptionHandler, ExceptionHandler>();

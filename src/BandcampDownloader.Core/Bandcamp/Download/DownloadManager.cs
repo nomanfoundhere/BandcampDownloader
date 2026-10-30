@@ -243,18 +243,24 @@ internal sealed class DownloadManager : IDownloadManager
     /// <param name="cancellationToken">The token to monitor for cancellation requests.</param>
     private async Task<bool> DownloadAndTagTrackAsync(Album album, Track track, byte[] artwork, CancellationToken cancellationToken)
     {
+        if (string.IsNullOrWhiteSpace(track.Mp3Url))
+        {
+            DownloadProgressChanged?.Invoke(this, new DownloadProgressChangedArgs(
+                $"Track \"{track.Title}\" from album \"{album.Title}\" has no available stream on Bandcamp - skipping it",
+                DownloadProgressChangedLevel.Warning));
+            return false;
+        }
+
         var tries = 0;
         var trackDownloaded = false;
 
-        TrackFile currentFile;
-        try
+        var currentFile = _downloadingFiles.FirstOrDefault(f => f.Url == track.Mp3Url);
+        if (currentFile == null)
         {
-            currentFile = _downloadingFiles.First(f => f.Url == track.Mp3Url);
-        }
-        catch (Exception ex)
-        {
-            _logger.Error(ex);
-            throw;
+            DownloadProgressChanged?.Invoke(this, new DownloadProgressChangedArgs(
+                $"No download information found for track \"{track.Title}\" from album \"{album.Title}\" - skipping it",
+                DownloadProgressChangedLevel.Warning));
+            return false;
         }
 
         if (File.Exists(track.Path))
@@ -345,15 +351,13 @@ internal sealed class DownloadManager : IDownloadManager
         var tries = 0;
         var artworkDownloaded = false;
 
-        TrackFile currentFile;
-        try
+        var currentFile = _downloadingFiles.FirstOrDefault(f => f.Url == album.ArtworkUrl);
+        if (currentFile == null)
         {
-            currentFile = _downloadingFiles.First(f => f.Url == album.ArtworkUrl);
-        }
-        catch (Exception ex)
-        {
-            _logger.Error(ex);
-            throw;
+            DownloadProgressChanged?.Invoke(this, new DownloadProgressChangedArgs(
+                $"No download information found for the artwork of album \"{album.Title}\" - skipping it",
+                DownloadProgressChangedLevel.Warning));
+            return null;
         }
 
         do

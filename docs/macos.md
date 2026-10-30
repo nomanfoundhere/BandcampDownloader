@@ -125,6 +125,11 @@ provides it) and never assumes the in-repo SDK exists.
   - track pages: `https://[artist].bandcamp.com/track/[track]`,
   - artist pages: `https://[artist].bandcamp.com` (optionally download the whole discography).
 - Start/stop downloads, progress bar, downloaded size, download speed and live log window.
+- **Incomplete Bandcamp pages are completed automatically**: when a page does not embed every MP3
+  URL, the app queries Bandcamp's public API to retrieve the missing stream URLs and to find
+  streamable tracks that the page data omits (for example a public excerpt on an album whose full
+  track is purchase-only). Tracks that Bandcamp does not expose for streaming are skipped with a
+  clear warning in the log instead of failing the whole album.
 - ID3 tagging: album, artist, album artist, title, track number, year and lyrics (when available).
 - Cover art: written next to the tracks and embedded in the ID3 tags.
 - Playlist creation: `m3u`, `pls`, `wpl` and `zpl`.
@@ -165,6 +170,10 @@ the system sound when downloads finish, and a Dock/window icon taken from the Wi
   the application only decodes cover-art images downloaded from Bandcamp's own servers, never
   untrusted local image files. See the comment in `src/Directory.Build.props` for the advisory
   list. Replace ImageSharp with a maintained image stack before accepting user-supplied images.
+- **No account / purchased downloads**: the app downloads the public 128 kbps streams (what can be
+  listened to on the website). If you purchase a release, use Bandcamp's own download link (from
+  your purchase e-mail or your Bandcamp collection) to get the full files: logging into a Bandcamp
+  account is not supported by the application (same as the Windows version).
 - **Windows-old behaviour that is not reproduced**: settings stored next to the executable (they
   now live in the per-user application data directory; existing Windows installations are migrated
   automatically on first start), WPF sound player (replaced by `afplay`), zip-based auto-update.
@@ -184,6 +193,7 @@ the system sound when downloads finish, and a Dock/window icon taken from the Wi
 | Settings seem stuck / want a clean profile | Quit the app and delete `~/Library/Application Support/BandcampDownloader/` (or use **Settings → Reset settings**). |
 | Keep test data out of your profile | Set `BANDCAMPDOWNLOADER_DATA_DIR` (see above). |
 | macOS asks for access to Desktop/Documents/Downloads | Only if you point the downloads folder there; allow the folder access prompt. The default `~/Music/Bandcamp/...` needs no permission. |
+| A track is reported as "not available for streaming or download" | Bandcamp does not expose a public stream for it (e.g. a purchase-only full track). The app downloads the streamable tracks of the page (for example a public excerpt) and skips the others; use Bandcamp's own download link after purchasing the release for the full files. |
 | Network/proxy issues | Proxy settings are present for parity but are **not applied** by the HTTP stack (same as the Windows version): use the system proxy / a VPN instead, and check the log for errors. |
 | Missing translations or a wrong theme | **Settings → General**; language and light/dark theme are applied immediately. |
 

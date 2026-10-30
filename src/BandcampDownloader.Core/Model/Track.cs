@@ -44,6 +44,11 @@ internal sealed class Track
     public string Title { get; set; }
 
     /// <summary>
+    /// The Bandcamp id of the track (0 when the page data did not expose it).
+    /// </summary>
+    public long TrackId { get; set; }
+
+    /// <summary>
     /// Initializes a new Track.
     /// </summary>
     public Track(Album album, double duration, string lyrics, string mp3Url, int number, string title)

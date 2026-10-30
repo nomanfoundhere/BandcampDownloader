@@ -16,6 +16,22 @@ internal sealed class Album
     public string Artist { get; set; }
 
     /// <summary>
+    /// The Bandcamp id of the band owning this album/track.
+    /// </summary>
+    public long? BandId { get; set; }
+
+    /// <summary>
+    /// The Bandcamp tralbum id: the album id when <see cref="TralbumType" /> is "album", the track id
+    /// when it is "track". Used to query the Bandcamp API.
+    /// </summary>
+    public long? TralbumId { get; set; }
+
+    /// <summary>
+    /// The type of the Bandcamp page the album was parsed from: "album" or "track".
+    /// </summary>
+    public string TralbumType { get; set; }
+
+    /// <summary>
     /// The local path (full path with file name) where the artwork file should be saved.
     /// </summary>
     public string ArtworkPath { get; private set; }

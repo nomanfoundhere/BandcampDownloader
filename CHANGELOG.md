@@ -10,6 +10,10 @@
 * Settings and log files now live in the platform's standard per-user application data directory (`%APPDATA%` on Windows, `~/Library/Application Support/BandcampDownloader` on macOS) instead of next to the executable. Existing Windows installations migrate their settings automatically on first start.
 * Windows: unobserved background task exceptions are now logged instead of showing a modal error dialog.
 * File names and paths are now sanitized and composed in a cross-platform way (no hard-coded backslashes, byte-safe length limits for long titles).
+* Incomplete Bandcamp pages are now completed from Bandcamp's public API: missing stream URLs are
+  retrieved and streamable tracks that the page data omits (for example a public excerpt next to a
+  purchase-only full track) are discovered. Tracks for which Bandcamp does not expose a stream are
+  skipped with a clear warning instead of aborting the whole album.
 
 # 1.5.2 (2025-12-01)
 
