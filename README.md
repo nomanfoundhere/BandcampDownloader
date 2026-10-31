@@ -1,3 +1,5 @@
+> **Unofficial macOS build (community fork).** This fork adds a native macOS application (Avalonia) to the Windows app. Download the prebuilt, self-contained `.app` from the [Releases](../../releases/latest) page, or build it yourself — see [docs/macos.md](docs/macos.md). This is **not** affiliated with or maintained by the original author; the official Windows application lives at [Otiel/BandcampDownloader](https://github.com/Otiel/BandcampDownloader).
+
 <h1 align="center"><img alt="Icon" src="docs/images/Cloud.png"> Bandcamp Downloader</h1>
 
 <p align="center">
